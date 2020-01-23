@@ -64,4 +64,4 @@ mean(salaries[salaries$raise == FALSE,]$salaries_adjustments) #inconvenient to r
 ## how you generated the salaries?
 
 # Write a .csv file of your salary data to your working directory
-
+getwd()
