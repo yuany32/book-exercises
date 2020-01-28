@@ -33,6 +33,7 @@ largest_org <- grants[grants$total_amount == max_amount,"organization"]
 print(largest_org)
 # Which organization received the smallest grant?
 smallest_org <- grants[grants$total_amount == min_amount,"organization"]
+grants[grants$total_amount == min_amount,c("organization","total_amount")]
 print(smallest_org)
-# How many grants were awarded in 2010?
-length(organization)
+# How many grants were awarded in 2010? and are awarded over 10,000
+nrow(grants[grants$start_year == "2010" & grants$total_amount > 10000,])
