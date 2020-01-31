@@ -2,16 +2,16 @@
 
 # Install devtools package: allows installations from GitHub
 install.packages("devtools")
-
+install.packages("tidyverse")
+install.packages("fueleconomy")
 # Install "fueleconomy" dataset from GitHub
 devtools::install_github("hadley/fueleconomy")
-
 # Use the `libary()` function to load the "fueleconomy" package
 library(fueleconomy)
-
+library(dplyr)
 # You should now have access to the `vehicles` data frame
 # You can use `View()` to inspect it
-
+View(vehicles)
 
 # Select the different manufacturers (makes) of the cars in this data set. 
 # Save this vector in a variable
@@ -32,7 +32,7 @@ library(fueleconomy)
 
 # Mutate the 1997 cars data frame to add a column `average` that has the average
 # gas milage (between city and highway mpg) for each car
-
+vehicles_1997$average <- (vehicles_1997$hwy + vehicles_1997$cty)/2
 
 # Filter the whole vehicles data set for 2-Wheel Drive vehicles that get more
 # than 20 miles/gallon in the city. 
@@ -48,7 +48,12 @@ library(fueleconomy)
 # and returns the vehicle model that gets the most hwy miles/gallon of vehicles 
 # of that make in that year.
 # You'll need to filter more (and do some selecting)!
-
+efficient_model <- function(year_choice,make_choice) {
+  year_make_df <- filter(vehicles, year == year_choice & make == make_choice)
+  max_hwy_df <- filter(year_make_df,hwy == max(hwy))
+  model_name <- max_hwy_df$model
+  return(model_name)
+}
 
 # What was the most efficient Honda model of 1995?
-
+efficient_model(1995,"Honda")
