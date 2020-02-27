@@ -43,7 +43,7 @@ library("ggplot2")
 # For another version, draw the same plot but with `violin` geometry instead of 
 # `boxplot` geometry!
 # How does the logarithmic scale change the data presentation?
-ggplot(data = diamonds_sample) + 
+ggplot(data = diamonds) + 
   geom_violin(mapping = aes(x = color, y = price)) +
   scale_y_log10()
 
@@ -59,7 +59,7 @@ ggplot(data = diamonds_sample) +
 # Draw a scatter plot for the diamonds price (y) by carat (x). Color each point
 # by the clarity (Remember, this will take a while. Use a sample of the diamonds 
 # for faster results)
-ggplot(data = diamonds_sample) + 
+ggplot(data = diamonds) + 
   geom_point(mapping = aes(x = carat, y = price, color = clarity))
 
 # Change the color of the previous plot using a ColorBrewer scale of your choice. 
