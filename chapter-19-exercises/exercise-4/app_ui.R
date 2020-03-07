@@ -3,6 +3,43 @@ library("shiny")
 
 # We'll begin by defining some of the UI elements as variables
 # This helps keep the code organized and easier to debug
+intro_panel <- tabPanel(
+  title="Introduction",
+  titlePanel("Income Inequality"),
+  p("The below diagram was created by the New York Times to illustrate the increasing level of inequality in the US"),
+  img(src = "inequality.png", alt = "Example NYT chart"),
+  p(
+  a(href = "https://www.nytimes.com/interactive/2017/08/07/opinion/leonhardt-income-inequality.html
+", "(source)")
+  )
+                        )
+sidebar_content <- sidebarPanel(
+  sliderInput(inputId="percentile",label="income percentile",
+              min=0,max=100,value=c(0,100))
+)
+
+main_content <- mainPanel(
+  plotOutput(outputId="plot"),
+  p(
+    "Data frame",
+    a(href = "http://gabriel-zucman.eu/usdina/", "(source)")
+  )
+)
+
+growth_panel <- tabPanel(
+  titlePanel("Income growth 1980-2014"),
+  sidebarLayout(
+    sidebar_content,
+    main_content
+  )
+)
+
+
+my_ui <- navbarPage(
+  title = ("Income Inequality"),
+  intro_panel,
+  growth_panel
+)
 
 # Define a variable `intro_panel` for your first page. It should be a
 # `tabPanel()` with a title "Introduction" to represent the first tab.
